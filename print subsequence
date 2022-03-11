@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void printsusequence(string s,int n, int i,vector<char> v){
+    if(i==n){
+        if (v.size() == 0) { cout<<"{}"; return;}
+        for(int i = 0 ; i<v.size(); i++ ) cout<<v[i]<<" ";
+        cout<<"\n";
+        return;
+    }
+    
+    v.push_back(s[i]);
+    printsusequence(s,n,i+1,v );
+    v.pop_back();
+    printsusequence(s,n,i+1, v);
+}
+
+int main() {
+	string s;
+	cin>>s;
+	vector<char> v;
+	int n = s.size();
+	int count =0;
+	printsusequence(s,n,0,v);
+	
+	return 0;
+}
