@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void sumsubset(vector<int> v, int n, int i, vector<int> vv, int sum, int target){
+    
+    if(i==n){
+        if(sum == target){
+            for(auto i:vv) cout<<i<<" ";
+            cout<<"\n";
+        }
+        return;
+    }
+    
+    vv.push_back(v[i]);
+    sum+=v[i];
+    sumsubset(v,n,i+1,vv,sum,target);
+    sum-=v[i];
+    vv.pop_back();
+    
+    sumsubset(v,n,i+1,vv,sum,target);
+    
+}
+
+
+int main() {
+    int n,t;
+    cin>>n;
+  
+// 	vector<int> v;
+// 	for(int i=0; i<n; i++) {
+// 	    int a;
+// 	    cin>>a;
+// 	    v.push_back(a);
+// 	}
+
+    vector<int>v(n,0);
+    for(int i=0; i<n; i++) cin>>v[i];
+	vector<int> vv;
+	cin>>t;
+	
+	sumsubset(v,n,0,vv,0,t);
+	return 0;
+}
