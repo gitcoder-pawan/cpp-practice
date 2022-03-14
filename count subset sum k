@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int subsetsum1(vector<int> v, int n, int i,  int target, int sum){
+    if(sum>target) return 0;
+    if(i==n){
+        if(sum==target) return 1;
+        return 0;
+    }
+    
+    sum+=v[i];
+    int l= subsetsum1(v,n,i+1,target,sum);
+    sum-=v[i];
+    int r= subsetsum1(v,n,i+1,target,sum);
+    
+    return l+r;
+}
+
+int main() {
+	int n,t;
+	cin>>n>>t;
+	vector<int>v(n,0),vv;
+	for(int i=0; i<n; i++) cin>>v[i];
+	cout<<subsetsum1(v,n,0,t,0);
+	return 0;
+}
